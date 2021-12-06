@@ -69,3 +69,7 @@ https://miro.com/app/board/uXjVOdaMiyA=/
 ## Trello
 
 https://trello.com/b/SpECG5U0/crystal-eyewear
+
+## Requirement Documentation
+
+https://drive.google.com/file/d/14pUaKrkyk2UBHEb60K8aXkj4fjEjmF2K/view?usp=sharing
