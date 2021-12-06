@@ -41,8 +41,7 @@ function validateCountry(country) {
 }
 
 function validateFullName(name) {
-    return (/^([\w]{3,3})+\s+([\w\s]{3,})+$/i).test(name)
-
+    return (/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*$/g).test(name)
 }
 
 function validatePassword(pass) {

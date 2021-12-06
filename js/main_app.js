@@ -42,7 +42,7 @@ function validateCountry(country) {
 }
 
 function validateFullName(name) {
-    return (/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g).test(name)
+    return (/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*$/g).test(name)
 
 }
 

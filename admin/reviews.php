@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang=en>
-<?php include_once 'layouts/head.php'; ?>
+<?php include_once 'layouts/head.php';
+include_once '../includes/db.php';
+$stmt = $connection->prepare(
+	"SELECT * FROM product_review INNER JOIN user ON user.id = product_review.user_id "
+	
+);
+$stmt->execute();
+$user_reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// echo"<pre>";var_dump($user_review);
+// die;
+
+
+
+if($_GET){
+	$id=$_GET['delete_review'];
+$delete = $connection->prepare("DELETE FROM product_review WHERE review_id ={$id}");
+		$delete->execute();
+		header('location:reviews.php');
+	}
+
+?>
 
 <body id=kt_body class="header-fixed header-tablet-and-mobile-fixed aside-enabled aside-fixed" style=--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px>
 	<div class="d-flex flex-column flex-root">
@@ -23,47 +43,32 @@
 											<tr class="text-start text-muted text-uppercase gs-0">
 											    <th class=min-w-125px>ID</th>
 												<th class=min-w-125px>Review</th>
-												<th class=min-w-125px>Rating</th>
+												<th class=min-w-125px>Comments</th>
 												<th class=min-w-125px>Created</th>
+												<th class=min-w-125px>product ID</th>
 												<th class="text-end min-w-100px">Actions</th>
 											</tr>
 										</thead>
 										<tbody class="fs-6 fw-bold text-gray-600">
+											<?php
+											foreach ($user_reviews as $review) {
+												?>
+												
+										
 											<tr>
 												<td>
-													<a href="#" class="text-gray-600 text-hover-primary mb-1">9621-8427</a>
+													<?php echo $review['review_id'] ?>
 												</td>
-												<td>Successful</td>
+												<td><?php echo $review['review_title'] ?></td>
 												<td>
-													<div class="rating">
-														<div class="rating-label me-2 checked">
-															<i class="bi bi-star-fill fs-5"></i>
-														</div>
-														<div class="rating-label me-2 checked">
-															<i class="bi bi-star-fill fs-5"></i>
-														</div>
-														<div class="rating-label me-2 checked">
-															<i class="bi bi-star-fill fs-5"></i>
-														</div>
-														<div class="rating-label me-2 checked">
-															<i class="bi bi-star-fill fs-5"></i>
-														</div>
-														<div class="rating-label me-2 checked">
-															<i class="bi bi-star-fill fs-5"></i>
-														</div>
-													</div>
+												<?php echo $review['review_comments'] ?>
+												
 												</td>
-												<td>14 Dec 2020, 8:43 pm</td>
+												<td><?php echo $review['date_created'] ?></td>
+												<td><?php echo $review['product_id'] ?></td>
 												<td class="pe-0 text-end">
-													<a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="tooltip" title="" data-kt-customer-payment-method="View" data-bs-original-title="View">
-														<span class="svg-icon svg-icon-muted svg-icon-3">
-															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																<path d="M13 21H3C2.4 21 2 20.6 2 20V4C2 3.4 2.4 3 3 3H13C13.6 3 14 3.4 14 4V20C14 20.6 13.6 21 13 21Z" fill="black"></path>
-																<path opacity="0.3" d="M17 21H21C21.6 21 22 20.6 22 20V4C22 3.4 21.6 3 21 3H17C16.4 3 16 3.4 16 4V20C16 20.6 16.4 21 17 21Z" fill="black"></path>
-															</svg>
-														</span>
-													</a>
-													<a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="tooltip" title="" data-kt-delete="delete_row" data-bs-original-title="Delete">
+													
+													<a href="reviews.php?delete_review=<?php echo $review['review_id']?>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"  title="" >
 														<span class="svg-icon svg-icon-3">
 															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 																<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black"></path>
@@ -74,52 +79,8 @@
 													</a>
 												</td>
 											</tr>
-									
-											<tr>
-												<td>
-													<a href="#" class="text-gray-600 text-hover-primary mb-1">9621-8427</a>
-												</td>
-												<td>Successful</td>
-												<td>
-													<div class="rating">
-														<div class="rating-label me-2 checked">
-															<i class="bi bi-star-fill fs-5"></i>
-														</div>
-														<div class="rating-label me-2 checked">
-															<i class="bi bi-star-fill fs-5"></i>
-														</div>
-														<div class="rating-label me-2 checked">
-															<i class="bi bi-star-fill fs-5"></i>
-														</div>
-														<div class="rating-label me-2 checked">
-															<i class="bi bi-star-fill fs-5"></i>
-														</div>
-														<div class="rating-label me-2 checked">
-															<i class="bi bi-star-fill fs-5"></i>
-														</div>
-													</div>
-												</td>
-												<td>14 Dec 2020, 8:43 pm</td>
-												<td class="pe-0 text-end">
-													<a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="tooltip" title="" data-kt-customer-payment-method="View" data-bs-original-title="View">
-														<span class="svg-icon svg-icon-muted svg-icon-3">
-															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																<path d="M13 21H3C2.4 21 2 20.6 2 20V4C2 3.4 2.4 3 3 3H13C13.6 3 14 3.4 14 4V20C14 20.6 13.6 21 13 21Z" fill="black"></path>
-																<path opacity="0.3" d="M17 21H21C21.6 21 22 20.6 22 20V4C22 3.4 21.6 3 21 3H17C16.4 3 16 3.4 16 4V20C16 20.6 16.4 21 17 21Z" fill="black"></path>
-															</svg>
-														</span>
-													</a>
-													<a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="tooltip" title="" data-kt-delete="delete_row" data-bs-original-title="Delete">
-														<span class="svg-icon svg-icon-3">
-															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black"></path>
-																<path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="black"></path>
-																<path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="black"></path>
-															</svg>
-														</span>
-													</a>
-												</td>
-											</tr>
+									<?php	}
+										?>
 										</tbody>
 									</table>
 								</div>

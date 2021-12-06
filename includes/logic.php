@@ -77,9 +77,9 @@ if (isset($_POST['login_submit']) || (isset($_POST['checkout_login']))) {
         //Admin login
         if($user_data['role']==="1"){
             $_SESSION['admin_loggedin']=true;
-            $_SESSION['user_name']=$user_data['username'];
             $_SESSION['admin-name']=$user_data['username'];
-            $_SESSION['user_id']=$user_data['id'];
+            $_SESSION['user_loggedin']=false;
+
             header("Location:../admin");
             exit();
         }
@@ -162,7 +162,7 @@ if(isset($_POST['country'])){
         [$address_line,$city,$country,$phone,$_SESSION['order_total'],$user_id,"pending",$cart_after_shopping]
          );
     unset($_SESSION["shopping_cart"]);
-    header("Location:../shop.php");
+    header("Location:../completed.php");
     exit();
 
 }
@@ -174,6 +174,7 @@ if(isset($_GET['logout'])){
         unset($_SESSION['user_name']);
         unset($_SESSION['user_loggedin']);
         unset( $_SESSION['admin_loggedin']);
+        unset( $_SESSION['admin-name']);
             header("Location:../index.php");
         exit();
     }
@@ -249,7 +250,7 @@ if(isset($_POST['log_out_adminDash'])){
     $_SESSION['admin_loggedin']=false;
     unset($_SESSION['admin_loggedin']);
     unset($_SESSION['user_loggedin']);
-    unset($_SESSION['admin_name']);
+    unset($_SESSION['admin-name']);
     header('location:../index.php');
     exit();
 }

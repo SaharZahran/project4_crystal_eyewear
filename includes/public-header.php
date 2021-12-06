@@ -75,7 +75,9 @@ if (isset($_POST['search_for_product'])) {
                          <?php if(isset( $_SESSION['admin_loggedin'])){
                              if( $_SESSION['admin_loggedin']===true){?>
                                  <li class="account">
+
                                      <i class="fa fa-unlock"></i><a href="admin/index.php">Go to admin</a>
+                                     <i class="fa fa-user"></i><a class="account mx-3" href="account.php"> Admin <?php echo $_SESSION['admin-name'] ?? ""  ?></a>
                                  </li>
                                  <?php }
                              

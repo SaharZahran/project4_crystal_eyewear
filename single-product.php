@@ -141,10 +141,13 @@ if (isset($_POST["post"])) {
                            <!--== Start Reviews Form Item ==-->
 
                                <div class="reviews-form-area">
-                                    <?php if(!isset($_SESSION['user_id'])) {?>
-                                   <div class=" h3 my-4">You need to sign in in order to write a review</div> <?php }?>
+                                    <?php
+                                    $loggedin=$_SESSION['user_loggedin']?? null;
+                                    if(!$loggedin) {?>
+                                   <div class=" h3 my-4">You need to sign in as a user in order to write a review</div> <?php }?>
                                    <?php if(isset($_SESSION['user_id'])) {
-                                   if($_SESSION['user_loggedin']===true){?>
+
+                                   if($loggedin){?>
                                    <h4 class="title">Write a review</h4>
                                    <div class="reviews-form-content">
                                        <form action="#" method="post">

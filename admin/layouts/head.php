@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<?php session_start();
+$admin_check=$_SESSION['admin_loggedin'];
+if(!$admin_check){
+    header("Location:../index.php");
+    exit();
+}
+?>
 <head>
     <base href="">
     <title>Metronic - the world's #1 selling Bootstrap Admin Theme Ecosystem for HTML, Vue, React, Angular &amp; Laravel by Keenthemes</title>

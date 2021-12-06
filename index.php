@@ -122,7 +122,7 @@
                         </div>
                      </div>
                      <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/1.webp"></div>
-                     <a class="banner-link-overlay" href="shop.php?sub_category_name=women"></a>
+                     <a class="banner-link-overlay" href="shop.php"></a>
                   </div>
                </div>
                <!--== End Product Collection Item ==-->
@@ -138,7 +138,7 @@
                         </div>
                      </div>
                      <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/2.webp"></div>
-                     <a class="banner-link-overlay" href="shop.php?sub_category_name=men"></a>
+                     <a class="banner-link-overlay" href="shop.php"></a>
                   </div>
                </div>
                <!--== End Product Collection Item ==-->
@@ -154,7 +154,7 @@
                         </div>
                      </div>
                      <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/3.webp"></div>
-                     <a class="banner-link-overlay" href="shop.php?sub_category_name=kids"></a>
+                     <a class="banner-link-overlay" href="shop.php"></a>
                   </div>
                </div>
                <!--== End Product Collection Item ==-->
